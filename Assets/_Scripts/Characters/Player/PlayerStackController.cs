@@ -11,6 +11,8 @@ public class PlayerStackController : MonoBehaviour
 	// Public Variables
 
 	// Private Variables
+	[SerializeField] private int maxStackLimit = 20;
+	
 	private List<CollectableController> _collectableControllers;
 
 	private const float DistanceBetween2StackObj = 1.2f;
@@ -35,6 +37,7 @@ public class PlayerStackController : MonoBehaviour
 	private void AddCollectableToStack(CollectableController collectableToAdd)
 	{
 		if (!collectableToAdd.CheckCanAddToStack()) return;
+		if (_collectableControllers.Count >= maxStackLimit) return;
 		
 		var spawnPos = transform.position + (Vector3.forward * DistanceBetween2StackObj);
 		spawnPos.y = 1f;
