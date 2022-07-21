@@ -11,7 +11,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0) && !Helper.IsOverUI())
         {
             controller.RunState();
         }

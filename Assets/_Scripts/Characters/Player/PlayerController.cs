@@ -32,7 +32,9 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void Start()
-    {
+	{
+		GameEvents.WinGameEvent += WinState;
+	    
         IdleState();
     }
 
@@ -54,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
 	public void IdleState() => _currentState = new PlayerIdleState(this);
 	public void RunState() => _currentState = new PlayerRunState(this);
-	public void WinState()
+	private void WinState()
 	{
 		_currentState = new PlayerFinishState(this);
 	}
