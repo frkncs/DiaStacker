@@ -18,4 +18,21 @@ public class PlayerRunState : PlayerBaseState
     {
         controller.swerveMovement.OnFixedUpdate();
     }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Collectable"))
+        {
+            var collectableController = other.GetComponent<CollectableController>();
+
+            if (collectableController.GetCollectableType() == CollectableController.CollectableType.Currency)
+            {
+                GameEvents.AddGoldToCurrencyEvent?.Invoke(collectableController);
+            }
+            else if (collectableController.GetCollectableType() == CollectableController.CollectableType.Stack)
+            {
+                GameEvents.AddCollectableToStackEvent?.Invoke(collectableController);
+            }
+        }
+    }
 }

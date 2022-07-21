@@ -6,6 +6,7 @@ public class PlayerFinishState : PlayerBaseState
 {
     public PlayerFinishState(PlayerController controller) : base(controller)
     {
+        controller.PlayDanceAnim();
     }
 
     public override void Update()
@@ -13,6 +14,10 @@ public class PlayerFinishState : PlayerBaseState
     }
 
     public override void FixedUpdate()
+    {
+    }
+
+    public override void OnTriggerEnter(Collider other)
     {
     }
 }

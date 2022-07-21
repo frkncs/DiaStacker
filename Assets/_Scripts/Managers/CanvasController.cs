@@ -18,9 +18,11 @@ public class CanvasController : MonoBehaviour
 	private void Start()
 	{
 		txtCurrentLevel.text = "Level " + (PlayerPrefs.GetInt("PlayerLevel") + 1);
-		txtCurrentMoney.text = PlayerPrefs.GetInt("Money").ToString();
+		
+		UpdateCurrentMoney();
 
 		GameEvents.WinGameEvent += OnWinGame;
+		GameEvents.UpdateCurrentMoneyEvent += UpdateCurrentMoney;
 	}
 
     private void OnWinGame()
@@ -28,5 +30,10 @@ public class CanvasController : MonoBehaviour
         txtCurrentLevel.gameObject.SetActive(false);
         txtCurrentMoney.gameObject.SetActive(false);
         winScreen.gameObject.SetActive(true);
+    }
+
+    private void UpdateCurrentMoney()
+    {
+	    txtCurrentMoney.text = PlayerPrefs.GetInt("Money").ToString();
     }
 }

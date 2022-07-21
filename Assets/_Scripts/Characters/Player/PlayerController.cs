@@ -26,9 +26,10 @@ public class PlayerController : MonoBehaviour
 
 	private void Awake()
 	{
-		//Application.targetFrameRate = 120;
+		Application.targetFrameRate = 120;
 		
-		InitComponents();
+		swerveMovement = GetComponent<SwerveMovement>();
+		_animator = GetComponent<Animator>();
 	}
 
 	private void Start()
@@ -48,10 +49,9 @@ public class PlayerController : MonoBehaviour
 		_currentState.FixedUpdate();
 	}
 
-	private void InitComponents()
+	private void OnTriggerEnter(Collider other)
 	{
-		swerveMovement = GetComponent<SwerveMovement>();
-		_animator = GetComponent<Animator>();
+		_currentState.OnTriggerEnter(other);
 	}
 
 	public void IdleState() => _currentState = new PlayerIdleState(this);

@@ -13,4 +13,5 @@ public abstract class PlayerBaseState
 
     public abstract void Update();
     public abstract void FixedUpdate();
+    public abstract void OnTriggerEnter(Collider other);
 }

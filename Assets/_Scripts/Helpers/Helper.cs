@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Helper
+public static class Helper
 {
+	public static T GetPeekObj<T>(this List<T> list)
+	{
+		return list[list.Count - 1];
+	}
+	
 	private static PointerEventData _eventDataCurrentPosition;
 	private static List<RaycastResult> _results;
 
