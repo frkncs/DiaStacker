@@ -933,7 +933,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 476433932}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -2040,7 +2040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stack Capacity
+  m_text: Start Stack Count
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b9705105fdaf4149b18ef80057a97f2, type: 2}
   m_sharedMaterial: {fileID: 7374927986402738804, guid: 3b9705105fdaf4149b18ef80057a97f2, type: 2}
@@ -2470,7 +2470,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355029356}
-  m_LocalRotation: {x: 0.24952403, y: -0.000000016662122, z: 0.000000004293406, w: 0.96836865}
+  m_LocalRotation: {x: 0.24952403, y: 0.000000016662115, z: -0.0000000042934047, w: 0.96836865}
   m_LocalPosition: {x: 0, y: 8, z: -10.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3173,7 +3173,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798818578}
-  m_LocalRotation: {x: 0.24952403, y: -0.000000016662122, z: 0.000000004293406, w: 0.96836865}
+  m_LocalRotation: {x: 0.24952403, y: 0.000000016662115, z: -0.0000000042934047, w: 0.96836865}
   m_LocalPosition: {x: 0, y: 8, z: -10.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
