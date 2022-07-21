@@ -34,5 +34,12 @@ public class PlayerRunState : PlayerBaseState
                 GameEvents.AddCollectableToStackEvent?.Invoke(collectableController);
             }
         }
+        else if (other.CompareTag("Obstacle"))
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                GameEvents.RemoveCollectableFromStackEvent?.Invoke();
+            }
+        }
     }
 }

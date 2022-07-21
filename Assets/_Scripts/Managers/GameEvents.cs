@@ -10,6 +10,7 @@ public class GameEvents : MonoBehaviour
     public static Action<CollectableController> AddCollectableToStackEvent;
     public static Action<CollectableController> AddGoldToCurrencyEvent;
     public static Action UpdateCurrentMoneyEvent;
+    public static Action RemoveCollectableFromStackEvent;
     
     private void OnDestroy()
     {
@@ -23,5 +24,6 @@ public class GameEvents : MonoBehaviour
         AddCollectableToStackEvent = null;
         AddGoldToCurrencyEvent = null;
         UpdateCurrentMoneyEvent = null;
+        RemoveCollectableFromStackEvent = null;
     }
 }

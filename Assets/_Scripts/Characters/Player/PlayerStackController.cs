@@ -30,6 +30,7 @@ public class PlayerStackController : MonoBehaviour
 	private void Start()
 	{
 		GameEvents.AddCollectableToStackEvent += AddCollectableToStack;
+		GameEvents.RemoveCollectableFromStackEvent += RemoveCollectableFromStack;
 	}
 
 	private void Update()
@@ -59,6 +60,23 @@ public class PlayerStackController : MonoBehaviour
 		if (_collectableControllers.Count == 1)
 		{
 			_playerController.PlayRun2Anim();
+		}
+	}
+
+	private void RemoveCollectableFromStack()
+	{
+		if (_collectableControllers.Count <= 0) return;
+
+		var collectableToRemove = _collectableControllers.GetPeekObj();
+		collectableToRemove.ThrowCollectable();
+		
+		_collectableControllers.Remove(collectableToRemove);
+
+		Destroy(collectableToRemove.gameObject, 2f);
+
+		if (_collectableControllers.Count == 0)
+		{
+			_playerController.PlayRunAnim();
 		}
 	}
 
