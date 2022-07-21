@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5804497333799908485}
   - component: {fileID: 7431621112818531104}
   - component: {fileID: 4667588827366789098}
+  - component: {fileID: 7571654682832370176}
   - component: {fileID: 5404913722174370721}
   m_Layer: 0
   m_Name: Obstacle
@@ -82,6 +83,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &7571654682832370176
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613086622221610559}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff54111b97f54844e8b0d631f1bf04cb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &5404913722174370721
 BoxCollider:
   m_ObjectHideFlags: 0
