@@ -11,17 +11,20 @@ public class PlayerStackController : MonoBehaviour
 	// Public Variables
 
 	// Private Variables
+	[SerializeField] private Transform stackStartPos;
 	[SerializeField] private int maxStackLimit = 20;
-	
+
+	private PlayerController _playerController;
 	private List<CollectableController> _collectableControllers;
 
-	private const float DistanceBetween2StackObj = 1.2f;
+	private const float DistanceBetween2StackObj = .9f;
 	
 	#endregion Variables
     
 	private void Awake()
 	{
 		_collectableControllers = new List<CollectableController>();
+		_playerController = GetComponent<PlayerController>();
 	}
 
 	private void Start()
@@ -38,19 +41,25 @@ public class PlayerStackController : MonoBehaviour
 	{
 		if (!collectableToAdd.CheckCanAddToStack()) return;
 		if (_collectableControllers.Count >= maxStackLimit) return;
-		
+
 		var spawnPos = transform.position + (Vector3.forward * DistanceBetween2StackObj);
-		spawnPos.y = 1f;
+		spawnPos.y = stackStartPos.position.y;
+		spawnPos.z = stackStartPos.position.z;
 		
 		if (_collectableControllers.Count != 0)
 		{
-			spawnPos.z = _collectableControllers.GetPeekObj().transform.position.z + DistanceBetween2StackObj;
+			spawnPos.y = _collectableControllers.GetPeekObj().transform.position.y + DistanceBetween2StackObj;
 		}
 		
 		collectableToAdd.transform.position = spawnPos;
 		collectableToAdd.StartFunc();
 		
 		_collectableControllers.Add(collectableToAdd);
+		
+		if (_collectableControllers.Count == 1)
+		{
+			_playerController.PlayRun2Anim();
+		}
 	}
 
 	private void MoveStack()

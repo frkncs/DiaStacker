@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 	private readonly int Run2Anim = Animator.StringToHash("Run2");
 	private readonly int DanceAnim = Animator.StringToHash("Dance");
 
-	private const float AnimationCrossFadeDuration = .1f;
+	private const float AnimationCrossFadeDuration = .2f;
 
 	#endregion Variables
 
