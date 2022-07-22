@@ -783,7 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackStartPos: {fileID: 614724750}
-  maxStackLimit: 20
+  maxStackLimit: 9
 --- !u!1 &3680824220618755072
 GameObject:
   m_ObjectHideFlags: 0
