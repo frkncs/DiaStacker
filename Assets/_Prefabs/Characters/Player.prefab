@@ -783,6 +783,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackStartPos: {fileID: 614724750}
+  stackItemCountObject: {fileID: 0}
+  txtStackItemCount: {fileID: 0}
   maxStackLimit: 10
 --- !u!1 &3680824220618755072
 GameObject:

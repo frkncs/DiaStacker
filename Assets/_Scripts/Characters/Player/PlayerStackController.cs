@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class PlayerStackController : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerStackController : MonoBehaviour
 
 	// Private Variables
 	[SerializeField] private Transform stackStartPos;
+	[SerializeField] private GameObject stackItemCountObject;
+	[SerializeField] private TextMeshProUGUI txtStackItemCount;
 	[SerializeField] private int maxStackLimit = 20;
 
 	private PlayerController _playerController;
@@ -32,6 +35,10 @@ public class PlayerStackController : MonoBehaviour
 		GameEvents.AddCollectableToStackEvent += AddCollectableToStack;
 		GameEvents.RemoveCollectableFromStackEvent += RemoveCollectableFromStack;
 		GameEvents.WinGameEvent += ThrowAllStack;
+		GameEvents.WinGameEvent += () =>
+		{
+			stackItemCountObject.SetActive(false);
+		};
 	}
 
 	private void Update()
@@ -61,6 +68,8 @@ public class PlayerStackController : MonoBehaviour
 		collectableToAdd.StartFunc();
 		
 		_collectableControllers.Add(collectableToAdd);
+
+		txtStackItemCount.text = _collectableControllers.Count.ToString();
 		
 		if (_collectableControllers.Count == 1)
 		{
@@ -76,6 +85,8 @@ public class PlayerStackController : MonoBehaviour
 		collectableToRemove.ThrowCollectable();
 		
 		_collectableControllers.Remove(collectableToRemove);
+		
+		txtStackItemCount.text = _collectableControllers.Count.ToString();
 
 		Destroy(collectableToRemove.gameObject, 2f);
 
