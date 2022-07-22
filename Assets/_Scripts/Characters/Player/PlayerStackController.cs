@@ -31,6 +31,7 @@ public class PlayerStackController : MonoBehaviour
 	{
 		GameEvents.AddCollectableToStackEvent += AddCollectableToStack;
 		GameEvents.RemoveCollectableFromStackEvent += RemoveCollectableFromStack;
+		GameEvents.WinGameEvent += ThrowAllStack;
 	}
 
 	private void Update()
@@ -80,13 +81,27 @@ public class PlayerStackController : MonoBehaviour
 		}
 	}
 
+	private void ThrowAllStack()
+	{
+		int loopCount = _collectableControllers.Count;
+		
+		for (int i = 0; i < loopCount; i++)
+		{
+			RemoveCollectableFromStack();
+		}
+	}
+
 	private void MoveStack()
 	{
 		for (int i = _collectableControllers.Count - 1; i >= 0; i--)
 		{
 			if (i == 0)
 			{
-				_collectableControllers[i].transform.DOMoveX(transform.position.x, .1f);
+				//_collectableControllers[i].transform.DOMoveX(transform.position.x, .1f);
+				var movePos = _collectableControllers[i].transform.position;
+				movePos.x = transform.position.x;
+				
+				_collectableControllers[i].transform.position = movePos;
 			}
 			else
 			{

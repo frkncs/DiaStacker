@@ -1127,6 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winScreen: {fileID: 3442665048404443930}
+  currentMoneyObject: {fileID: 3442665048881234225}
   txtCurrentLevel: {fileID: 3442665050006836297}
   txtCurrentMoney: {fileID: 3442665049890068192}
 --- !u!1 &3442665049728532158

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(SwerveMovement))]
@@ -58,6 +59,12 @@ public class PlayerController : MonoBehaviour
 	public void RunState() => _currentState = new PlayerRunState(this);
 	private void WinState()
 	{
+		var lookAtPos = Camera.main.transform.position;
+		lookAtPos.y = 0;
+		
+		transform.DOLookAt(lookAtPos, .8f)
+			.SetEase(Ease.OutSine);
+		
 		_currentState = new PlayerFinishState(this);
 	}
 

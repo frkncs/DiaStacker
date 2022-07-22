@@ -11,6 +11,7 @@ public class CanvasController : MonoBehaviour
 
 	// Private Variables
 	[SerializeField] private GameObject winScreen;
+	[SerializeField] private GameObject currentMoneyObject;
 	[SerializeField] private TextMeshProUGUI txtCurrentLevel, txtCurrentMoney;
 
 	#endregion Variables
@@ -28,7 +29,7 @@ public class CanvasController : MonoBehaviour
     private void OnWinGame()
     {
         txtCurrentLevel.gameObject.SetActive(false);
-        txtCurrentMoney.gameObject.SetActive(false);
+        currentMoneyObject.gameObject.SetActive(false);
         winScreen.gameObject.SetActive(true);
     }
 
