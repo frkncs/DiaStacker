@@ -6,23 +6,32 @@ public class MoneyManager : MonoBehaviour
 {
     #region Variables
 
-	// Public Variables
+    // Public Variables
 
-	// Private Variables
+    // Private Variables
+    private int _collectedMoneyInLevel;
 
-	#endregion Variables
+    #endregion Variables
+
+    private void Start()
+    {
+        GameEvents.AddGoldToCurrencyEvent += AddGoldToCurrency;
+        GameEvents.WinGameEvent += SetCollectedMoneyText;
+    }
     
-	private void Start()
-	{
-		GameEvents.AddGoldToCurrencyEvent += AddGoldToCurrency;
-	}
-
     private void AddGoldToCurrency(CollectableController goldCollectableController)
     {
+        _collectedMoneyInLevel += goldCollectableController.increaseValue;
+
         PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + goldCollectableController.increaseValue);
-        
+
         GameEvents.UpdateCurrentMoneyEvent?.Invoke();
-        
+
         Destroy(goldCollectableController.gameObject);
+    }
+
+    private void SetCollectedMoneyText()
+    {
+        GameEvents.SetCollectedMoney?.Invoke(_collectedMoneyInLevel);
     }
 }

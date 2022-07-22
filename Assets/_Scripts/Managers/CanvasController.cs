@@ -12,7 +12,7 @@ public class CanvasController : MonoBehaviour
 	// Private Variables
 	[SerializeField] private GameObject winScreen;
 	[SerializeField] private GameObject currentMoneyObject;
-	[SerializeField] private TextMeshProUGUI txtCurrentLevel, txtCurrentMoney;
+	[SerializeField] private TextMeshProUGUI txtCurrentLevel, txtCurrentMoney, txtCollectedMoney;
 
 	#endregion Variables
     
@@ -24,6 +24,7 @@ public class CanvasController : MonoBehaviour
 
 		GameEvents.WinGameEvent += OnWinGame;
 		GameEvents.UpdateCurrentMoneyEvent += UpdateCurrentMoney;
+		GameEvents.SetCollectedMoney += SetCollectedMoneyText;
 	}
 
     private void OnWinGame()
@@ -36,5 +37,10 @@ public class CanvasController : MonoBehaviour
     private void UpdateCurrentMoney()
     {
 	    txtCurrentMoney.text = PlayerPrefs.GetInt("Money").ToString();
+    }
+
+    private void SetCollectedMoneyText(int collectedMoney)
+    {
+	    txtCollectedMoney.text = "+" + collectedMoney;
     }
 }

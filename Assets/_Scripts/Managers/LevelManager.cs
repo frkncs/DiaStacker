@@ -12,6 +12,7 @@ public struct GameEvents
     public static Action<CollectableController> AddGoldToCurrencyEvent;
     public static Action UpdateCurrentMoneyEvent;
     public static Action RemoveCollectableFromStackEvent;
+    public static Action<int> SetCollectedMoney;
 }
 
 public class LevelManager : MonoBehaviour
@@ -56,5 +57,6 @@ public class LevelManager : MonoBehaviour
         GameEvents.AddGoldToCurrencyEvent = null;
         GameEvents.UpdateCurrentMoneyEvent = null;
         GameEvents.RemoveCollectableFromStackEvent = null;
+        GameEvents.SetCollectedMoney = null;
     }
 }
