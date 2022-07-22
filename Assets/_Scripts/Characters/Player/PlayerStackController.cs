@@ -45,6 +45,7 @@ public class PlayerStackController : MonoBehaviour
 		if (_collectableControllers.Count >= maxStackLimit)
 		{
 			Destroy(collectableToAdd.gameObject);
+			return;
 		}
 
 		var spawnPos = transform.position + (Vector3.forward * DistanceBetween2StackObj);
