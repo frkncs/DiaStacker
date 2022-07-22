@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 688905840186079715}
   - component: {fileID: 8078402820458190946}
   - component: {fileID: 1436708367207145881}
-  - component: {fileID: 8339652689144499314}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -82,25 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &8339652689144499314
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3431185227066574790}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff54111b97f54844e8b0d631f1bf04cb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5092241692680519510
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,8 +171,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayPos: {fileID: 5714103011790348101}
+  modelTransform: {fileID: 688905840186079715}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  canMove: 0
+  moveType: 0
   moveSpeed: 4
