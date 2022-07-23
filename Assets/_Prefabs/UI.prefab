@@ -1281,7 +1281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.70980394, g: 0.45882353, b: 0.9411765, a: 1}
+  m_EffectColor: {r: 0.8901961, g: 0.78039217, b: 1, a: 1}
   m_EffectDistance: {x: -4, y: -4}
   m_UseGraphicAlpha: 1
 --- !u!114 &304757635
@@ -1682,6 +1682,7 @@ MonoBehaviour:
   txtCost: {fileID: 3442665049053924668}
   itemType: 0
   defaultCost: 100
+  maxBuyCount: 4
   txtStartItemCount: {fileID: 429793582}
 --- !u!1 &3442665049782391165
 GameObject:
