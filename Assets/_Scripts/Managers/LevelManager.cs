@@ -13,6 +13,19 @@ public struct GameEvents
     public static Action UpdateCurrentMoneyEvent;
     public static Action RemoveCollectableFromStackEvent;
     public static Action<int> SetCollectedMoney;
+    public static Action UpdateStartStackEvent;
+    
+    public static void DestroyEvents()
+    {
+        GameStartedEvent = null;
+        WinGameEvent = null;
+        AddCollectableToStackEvent = null;
+        AddGoldToCurrencyEvent = null;
+        UpdateCurrentMoneyEvent = null;
+        RemoveCollectableFromStackEvent = null;
+        SetCollectedMoney = null;
+        UpdateStartStackEvent = null;
+    }
 }
 
 public class LevelManager : MonoBehaviour
@@ -37,7 +50,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        DestroyEvents();
+        GameEvents.DestroyEvents();
     }
 
     public void NextLevel()
@@ -47,16 +60,5 @@ public class LevelManager : MonoBehaviour
         var level = PlayerPrefs.GetInt("PlayerLevel");
 
         SceneManager.LoadScene(level % SceneManager.sceneCountInBuildSettings);
-    }
-    
-    private void DestroyEvents()
-    {
-        GameEvents.GameStartedEvent = null;
-        GameEvents.WinGameEvent = null;
-        GameEvents.AddCollectableToStackEvent = null;
-        GameEvents.AddGoldToCurrencyEvent = null;
-        GameEvents.UpdateCurrentMoneyEvent = null;
-        GameEvents.RemoveCollectableFromStackEvent = null;
-        GameEvents.SetCollectedMoney = null;
     }
 }

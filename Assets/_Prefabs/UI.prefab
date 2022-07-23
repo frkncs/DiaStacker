@@ -598,7 +598,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3442665048638883055}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6387829675666790544}
+        m_TargetAssemblyTypeName: UpgradeItemController, Assembly-CSharp
+        m_MethodName: BuyItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3442665048746471016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +1584,7 @@ GameObject:
   - component: {fileID: 3442665049732049815}
   - component: {fileID: 3442665049732049808}
   - component: {fileID: 3442665049732049809}
+  - component: {fileID: 6387829675666790544}
   m_Layer: 0
   m_Name: UpgradeItem01
   m_TagString: Untagged
@@ -1654,6 +1667,22 @@ MonoBehaviour:
   m_EffectColor: {r: 0.90099996, g: 0.90099996, b: 0.90099996, a: 1}
   m_EffectDistance: {x: -5, y: -5}
   m_UseGraphicAlpha: 0
+--- !u!114 &6387829675666790544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3442665049732049811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7c1771e22d79e4d8f1823c6b6644bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCost: {fileID: 3442665049053924668}
+  itemType: 0
+  defaultCost: 100
+  txtStartItemCount: {fileID: 429793582}
 --- !u!1 &3442665049782391165
 GameObject:
   m_ObjectHideFlags: 0

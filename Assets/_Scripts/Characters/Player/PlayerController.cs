@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
 	// Public Variables
 	[HideInInspector] public SwerveMovement swerveMovement;
+	[HideInInspector] public PlayerStackController playerStackController;
 
 	// Private Variables
 	private PlayerBaseState _currentState;
@@ -30,15 +31,16 @@ public class PlayerController : MonoBehaviour
 		Application.targetFrameRate = 120;
 		
 		swerveMovement = GetComponent<SwerveMovement>();
+		playerStackController = GetComponent<PlayerStackController>();
 		_animator = GetComponent<Animator>();
+		
+		IdleState();
 	}
 
 	private void Start()
 	{
 		GameEvents.WinGameEvent += WinState;
-	    
-        IdleState();
-    }
+	}
 
 	private void Update()
 	{
@@ -71,5 +73,13 @@ public class PlayerController : MonoBehaviour
 	public void PlayIdleAnim() => _animator.CrossFade(IdleAnim, AnimationCrossFadeDuration);
 	public void PlayRunAnim() => _animator.CrossFade(RunAnim, AnimationCrossFadeDuration);
 	public void PlayRun2Anim() => _animator.CrossFade(Run2Anim, AnimationCrossFadeDuration);
+
+	public void PlayRun2Anim(float speed)
+	{
+		_animator.SetFloat("Run2AnimSpeed", speed);
+		_animator.CrossFade(Run2Anim, AnimationCrossFadeDuration);
+	}
 	public void PlayDanceAnim() => _animator.CrossFade(DanceAnim, AnimationCrossFadeDuration);
+
+	public bool CheckIsIdleState() => _currentState.GetType() == typeof(PlayerIdleState);
 }

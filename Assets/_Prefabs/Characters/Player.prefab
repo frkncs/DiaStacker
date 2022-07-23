@@ -782,6 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc28191d09d7e64a8aaffe6a9634dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectablePrefab: {fileID: 5584448537180016951, guid: ea98a34e85b83f9489aa38f320920603, type: 3}
   stackStartPos: {fileID: 614724750}
   stackItemCountObject: {fileID: 0}
   txtStackItemCount: {fileID: 0}

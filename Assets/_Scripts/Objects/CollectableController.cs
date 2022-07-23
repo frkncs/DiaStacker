@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -35,10 +36,7 @@ public class CollectableController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
+        
         _playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
 
         _currentState = new CollectableIdleState(this);
@@ -52,6 +50,11 @@ public class CollectableController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         _currentState.OnTriggerEnter(other);
+    }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
     }
 
     public void StartFunc()

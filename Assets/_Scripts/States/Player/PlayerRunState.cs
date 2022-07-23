@@ -6,7 +6,14 @@ public class PlayerRunState : PlayerBaseState
 {
     public PlayerRunState(PlayerController controller) : base(controller)
     {
-        controller.PlayRunAnim();
+        if (controller.playerStackController.collectableControllers.Count > 0)
+        {
+            controller.PlayRun2Anim(1);
+        }
+        else
+        {
+            controller.PlayRunAnim();   
+        }
     }
 
     public override void Update()
