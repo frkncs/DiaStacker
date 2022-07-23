@@ -988,22 +988,22 @@ PrefabInstance:
     - target: {fileID: 2256107072568812796, guid: 1a327dcbc1bee1b42848752cd8540c9c, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -8670151273213183110, guid: c7c578b97a755b242b2801cb4b39c88a, type: 3}
+      objectReference: {fileID: -8670151273213183110, guid: 1e01d80fdc2155d4692276500db33fc9, type: 3}
     - target: {fileID: 2256107072568812797, guid: 1a327dcbc1bee1b42848752cd8540c9c, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2256107072568812797, guid: 1a327dcbc1bee1b42848752cd8540c9c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2256107072568812797, guid: 1a327dcbc1bee1b42848752cd8540c9c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2256107072568812797, guid: 1a327dcbc1bee1b42848752cd8540c9c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2256107072568812797, guid: 1a327dcbc1bee1b42848752cd8540c9c, type: 3}
       propertyPath: m_LocalPosition.x
