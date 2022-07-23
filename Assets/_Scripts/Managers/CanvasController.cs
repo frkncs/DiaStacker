@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -37,6 +38,19 @@ public class CanvasController : MonoBehaviour
     private void UpdateCurrentMoney()
     {
 	    txtCurrentMoney.text = PlayerPrefs.GetInt("Money").ToString();
+	    
+	    var txtCurrentMoneyTrans = currentMoneyObject.transform;
+
+	    txtCurrentMoneyTrans.DOKill();
+	    txtCurrentMoneyTrans.localScale = Vector3.one;
+
+	    txtCurrentMoneyTrans.DOScale(Vector3.one * 1.4f, .1f)
+		    .SetEase(Ease.Linear)
+		    .OnComplete(() =>
+		    {
+			    txtCurrentMoneyTrans.DOScale(Vector3.one, .1f)
+				    .SetEase(Ease.Linear);
+		    });
     }
 
     private void SetCollectedMoneyText(int collectedMoney)
