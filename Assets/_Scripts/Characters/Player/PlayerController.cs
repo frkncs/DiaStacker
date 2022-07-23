@@ -14,8 +14,12 @@ public class PlayerController : MonoBehaviour
 	[HideInInspector] public PlayerStackController playerStackController;
 
 	// Private Variables
+	[SerializeField] private Renderer renderer;
+	
 	private PlayerBaseState _currentState;
 	private Animator _animator;
+
+	private Color _defColor;
 
 	private readonly int IdleAnim = Animator.StringToHash("Idle");
 	private readonly int RunAnim = Animator.StringToHash("Run");
@@ -33,6 +37,8 @@ public class PlayerController : MonoBehaviour
 		swerveMovement = GetComponent<SwerveMovement>();
 		playerStackController = GetComponent<PlayerStackController>();
 		_animator = GetComponent<Animator>();
+
+		_defColor = renderer.material.color;
 		
 		IdleState();
 	}
@@ -80,6 +86,16 @@ public class PlayerController : MonoBehaviour
 		_animator.CrossFade(Run2Anim, AnimationCrossFadeDuration);
 	}
 	public void PlayDanceAnim() => _animator.CrossFade(DanceAnim, AnimationCrossFadeDuration);
-
 	public bool CheckIsIdleState() => _currentState.GetType() == typeof(PlayerIdleState);
+
+	public void PlayRedColorAnim()
+	{
+		renderer.material.DOColor(Color.red, .1f)
+			.SetEase(Ease.Linear)
+			.OnComplete(() =>
+			{
+				renderer.material.DOColor(_defColor, .1f)
+					.SetEase(Ease.Linear);
+			});
+	}
 }

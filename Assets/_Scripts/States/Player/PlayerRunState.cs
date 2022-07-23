@@ -43,6 +43,7 @@ public class PlayerRunState : PlayerBaseState
         }
         else if (other.CompareTag("Obstacle"))
         {
+            controller.PlayRedColorAnim();
             GameEvents.PlayHittedObstacleFeedbackEvent?.Invoke();
             
             for (int i = 0; i < 2; i++)
