@@ -26,10 +26,9 @@ public class MoneyManager : MonoBehaviour
         PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + goldCollectableController.increaseValue);
 
         goldCollectableController.StartCollectedMoneyAnim();
-        goldCollectableController.PlayCollectedParticle();
         
         GameEvents.UpdateCurrentMoneyEvent?.Invoke();
-        GameEvents.PlayCollectedFeedbackEvent?.Invoke();
+        GameEvents.PlayCollectedFeedbackEvent?.Invoke(CollectableController.CollectableType.Currency, goldCollectableController.transform.position);
 
         Destroy(goldCollectableController.gameObject);
     }

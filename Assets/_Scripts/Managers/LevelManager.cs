@@ -15,7 +15,7 @@ public struct GameEvents
     public static Action<int> SetCollectedMoney;
     public static Action UpdateStartStackEvent;
     
-    public static Action PlayCollectedFeedbackEvent;
+    public static Action<CollectableController.CollectableType, Vector3> PlayCollectedFeedbackEvent;
     public static Action PlayHittedObstacleFeedbackEvent;
     
     public static void DestroyEvents()

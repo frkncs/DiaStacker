@@ -22,7 +22,6 @@ public class CollectableController : MonoBehaviour
 
     // Private Variables
     [SerializeField] private TextMeshPro txtCollectedMoneyText;
-    [SerializeField] private ParticleSystem collectedParticle;
     [SerializeField] private CollectableType collectableType;
 
     private Transform _playerTrans;
@@ -103,12 +102,6 @@ public class CollectableController : MonoBehaviour
         trans.DOScale(Vector3.zero, .2f)
             .SetEase(Ease.OutSine)
             .SetDelay(.2f);
-    }
-
-    public void PlayCollectedParticle()
-    {
-        collectedParticle.transform.SetParent(null);
-        collectedParticle.Play();
     }
 
     public void ThrowCollectable()

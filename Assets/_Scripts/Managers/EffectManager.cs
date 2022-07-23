@@ -7,21 +7,39 @@ public class EffectManager : MonoBehaviour
 {
     #region Variables
 
-	// Public Variables
+    // Public Variables
 
-	// Private Variables
-	[Header("Feedbacks")]
-	[SerializeField] private MMFeedbacks collectedFeedback;
-	[SerializeField] private MMFeedbacks hittedObstacleFeedback;
+    // Private Variables
+    [Header("Feedbacks")] [SerializeField] private MMFeedbacks collectedFeedback;
+    [SerializeField] private MMFeedbacks hittedObstacleFeedback;
 
-	#endregion Variables
-    
-	private void Start()
-	{
-		GameEvents.PlayCollectedFeedbackEvent += PlayCollectedFeedback;
-		GameEvents.PlayHittedObstacleFeedbackEvent += PlayHittedObstacleFeedback;
-	}
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem collectedDiamondParticle;
+    [SerializeField] private ParticleSystem collectedGoldParticle;
 
-	private void PlayCollectedFeedback() => collectedFeedback.PlayFeedbacks();
-	private void PlayHittedObstacleFeedback() => hittedObstacleFeedback.PlayFeedbacks();
+    #endregion Variables
+
+    private void Start()
+    {
+        GameEvents.PlayCollectedFeedbackEvent += PlayCollectedFeedback;
+        GameEvents.PlayHittedObstacleFeedbackEvent += PlayHittedObstacleFeedback;
+    }
+
+    private void PlayCollectedFeedback(CollectableController.CollectableType collectableType, Vector3 pos)
+    {
+        if (collectableType == CollectableController.CollectableType.Currency)
+        {
+            collectedGoldParticle.transform.position = pos;
+            collectedGoldParticle.Play();
+        }
+        else if (collectableType == CollectableController.CollectableType.Stack)
+        {
+            collectedDiamondParticle.transform.position = pos;
+            collectedDiamondParticle.Play();
+        }
+
+        collectedFeedback.PlayFeedbacks();
+    }
+
+    private void PlayHittedObstacleFeedback() => hittedObstacleFeedback.PlayFeedbacks();
 }
