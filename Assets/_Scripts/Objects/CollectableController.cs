@@ -107,6 +107,8 @@ public class CollectableController : MonoBehaviour
 
     public void PlayCollectedParticle()
     {
+        if (collectedParticle == null) return;
+        
         Destroy(collectedParticle.gameObject, 1.5f);
         collectedParticle.transform.SetParent(null);
         collectedParticle.Play();

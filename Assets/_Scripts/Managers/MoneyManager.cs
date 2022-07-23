@@ -27,7 +27,9 @@ public class MoneyManager : MonoBehaviour
 
         goldCollectableController.StartCollectedMoneyAnim();
         goldCollectableController.PlayCollectedParticle();
+        
         GameEvents.UpdateCurrentMoneyEvent?.Invoke();
+        GameEvents.PlayCollectedFeedbackEvent?.Invoke();
 
         Destroy(goldCollectableController.gameObject);
     }

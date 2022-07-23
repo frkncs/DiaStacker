@@ -15,6 +15,9 @@ public struct GameEvents
     public static Action<int> SetCollectedMoney;
     public static Action UpdateStartStackEvent;
     
+    public static Action PlayCollectedFeedbackEvent;
+    public static Action PlayHittedObstacleFeedbackEvent;
+    
     public static void DestroyEvents()
     {
         GameStartedEvent = null;
@@ -25,6 +28,9 @@ public struct GameEvents
         RemoveCollectableFromStackEvent = null;
         SetCollectedMoney = null;
         UpdateStartStackEvent = null;
+        
+        PlayCollectedFeedbackEvent = null;
+        PlayHittedObstacleFeedbackEvent = null;
     }
 }
 

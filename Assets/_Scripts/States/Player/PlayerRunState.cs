@@ -43,6 +43,8 @@ public class PlayerRunState : PlayerBaseState
         }
         else if (other.CompareTag("Obstacle"))
         {
+            GameEvents.PlayHittedObstacleFeedbackEvent?.Invoke();
+            
             for (int i = 0; i < 2; i++)
             {
                 GameEvents.RemoveCollectableFromStackEvent?.Invoke();

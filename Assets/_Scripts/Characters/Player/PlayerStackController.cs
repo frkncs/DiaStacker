@@ -65,7 +65,9 @@ public class PlayerStackController : MonoBehaviour
         {
             spawnPos.y = collectableControllers.GetPeekObj().transform.position.y + DistanceBetween2StackObj;
         }
-
+        
+        GameEvents.PlayCollectedFeedbackEvent?.Invoke();
+        
         collectableToAdd.PlayCollectedParticle();
         collectableToAdd.transform.position = spawnPos;
         collectableToAdd.StartFunc();
