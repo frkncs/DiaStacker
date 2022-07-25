@@ -29,7 +29,7 @@ public class CollectableCollectedState : CollectableBaseState
             }
             else if (collectableController.GetCollectableType() == CollectableController.CollectableType.Stack)
             {
-                GameEvents.AddCollectableToStackEvent?.Invoke(collectableController);
+                GameEvents.AddCollectableToStackEvent?.Invoke(other.transform);
             }
         }
     }

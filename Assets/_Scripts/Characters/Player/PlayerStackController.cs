@@ -10,72 +10,53 @@ public class PlayerStackController : MonoBehaviour
     #region Variables
 
     // Public Variables
-    [HideInInspector] public List<CollectableController> collectableControllers;
 
     // Private Variables
-    [SerializeField] private CollectableController collectablePrefab;
-    [SerializeField] private Transform stackStartPos;
     [SerializeField] private GameObject stackItemCountObject;
     [SerializeField] private TextMeshProUGUI txtStackItemCount;
     [SerializeField] private int maxStackLimit = 20;
 
     private PlayerController _playerController;
 
-    private const float DistanceBetween2StackObj = .9f;
+    private int _stackObjectCounter;
 
     #endregion Variables
 
     private void Awake()
     {
-        collectableControllers = new List<CollectableController>();
         _playerController = GetComponent<PlayerController>();
+        _stackObjectCounter = PlayerPrefs.GetInt("StartStackCount");
     }
 
     private void Start()
     {
         GameEvents.AddCollectableToStackEvent += AddCollectableToStack;
         GameEvents.RemoveCollectableFromStackEvent += RemoveCollectableFromStack;
-        GameEvents.WinGameEvent += ThrowAllStack;
-        GameEvents.WinGameEvent += () => { stackItemCountObject.SetActive(false); };
-
-        GameEvents.UpdateStartStackEvent += UpdateStartStack;
-
+        GameEvents.UpdateStartStackItemCount += UpdateStartStack;
+        GameEvents.UpdateStackItemCount += UpdateStackItemCountText;
+        
         UpdateStartStack();
     }
 
-    private void Update()
+    public int GetStackObjectCount() => _stackObjectCounter;
+    public int GetMaxStackObjectCount() => maxStackLimit;
+    
+    private void AddCollectableToStack(Transform collectableTrans)
     {
-        MoveStack();
-    }
-
-    private void AddCollectableToStack(CollectableController collectableToAdd)
-    {
-        if (!collectableToAdd.CheckCanAddToStack()) return;
-        if (collectableControllers.Count >= maxStackLimit)
+        GameEvents.PlayCollectedFeedbackEvent?.Invoke(CollectableController.CollectableType.Stack, collectableTrans.position);
+        
+        if (_stackObjectCounter >= maxStackLimit)
         {
-            Destroy(collectableToAdd.gameObject);
+            Destroy(collectableTrans.gameObject);
             return;
         }
 
-        var spawnPos = transform.position + (Vector3.forward * DistanceBetween2StackObj);
-        spawnPos.y = stackStartPos.position.y;
-        spawnPos.z = stackStartPos.position.z;
+        _stackObjectCounter++;
 
-        if (collectableControllers.Count != 0)
-        {
-            spawnPos.y = collectableControllers.GetPeekObj().transform.position.y + DistanceBetween2StackObj;
-        }
-        
-        GameEvents.PlayCollectedFeedbackEvent?.Invoke(CollectableController.CollectableType.Stack, collectableToAdd.transform.position);
-        
-        collectableToAdd.transform.position = spawnPos;
-        collectableToAdd.StartFunc();
+        GameEvents.UpdateStackItemCount?.Invoke();
+        Destroy(collectableTrans.gameObject);
 
-        collectableControllers.Add(collectableToAdd);
-
-        UpdateStackItemCountText();
-
-        if (collectableControllers.Count == 1)
+        if (_stackObjectCounter == 1)
         {
             if (_playerController.CheckIsIdleState())
             {
@@ -90,41 +71,21 @@ public class PlayerStackController : MonoBehaviour
 
     private void RemoveCollectableFromStack()
     {
-        if (collectableControllers.Count <= 0) return;
-
-        var collectableToRemove = collectableControllers.GetPeekObj();
-        collectableToRemove.ThrowCollectable();
-
-        collectableControllers.Remove(collectableToRemove);
-
-        UpdateStackItemCountText();
-
-        Destroy(collectableToRemove.gameObject, 2f);
-
-        if (collectableControllers.Count == 0)
-        {
-            _playerController.PlayRunAnim();
-        }
+        _stackObjectCounter--;
+        
+        GameEvents.UpdateStackItemCount?.Invoke();
     }
 
     private void UpdateStartStack()
     {
-        foreach (var collectableController in collectableControllers)
-        {
-            Destroy(collectableController.gameObject);
-        }
-
-        collectableControllers.Clear();
-
-        for (int i = 0; i < PlayerPrefs.GetInt("StartStackCount"); i++)
-        {
-            AddCollectableToStack(Instantiate(collectablePrefab));
-        }
+        _stackObjectCounter = PlayerPrefs.GetInt("StartStackCount");
+        
+        GameEvents.UpdateStackItemCount?.Invoke();
     }
 
     private void UpdateStackItemCountText()
     {
-        txtStackItemCount.text = collectableControllers.Count.ToString();
+        txtStackItemCount.text = _stackObjectCounter.ToString();
 
         var txtStackItemTrans = stackItemCountObject.transform;
 
@@ -140,32 +101,7 @@ public class PlayerStackController : MonoBehaviour
             });
     }
 
-    private void ThrowAllStack()
+    private void MakeEmptyAllStack()
     {
-        int loopCount = collectableControllers.Count;
-
-        for (int i = 0; i < loopCount; i++)
-        {
-            RemoveCollectableFromStack();
-        }
-    }
-
-    private void MoveStack()
-    {
-        for (int i = collectableControllers.Count - 1; i >= 0; i--)
-        {
-            if (i == 0)
-            {
-                //_collectableControllers[i].transform.DOMoveX(transform.position.x, .1f);
-                var movePos = collectableControllers[i].transform.position;
-                movePos.x = transform.position.x;
-
-                collectableControllers[i].transform.position = movePos;
-            }
-            else
-            {
-                collectableControllers[i].transform.DOMoveX(collectableControllers[i - 1].transform.position.x, .1f);
-            }
-        }
     }
 }

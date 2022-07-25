@@ -6,7 +6,7 @@ public class PlayerRunState : PlayerBaseState
 {
     public PlayerRunState(PlayerController controller) : base(controller)
     {
-        if (controller.playerStackController.collectableControllers.Count > 0)
+        if (controller.playerStackController.GetStackObjectCount() > 0)
         {
             controller.PlayRun2Anim(1);
         }
@@ -38,7 +38,7 @@ public class PlayerRunState : PlayerBaseState
             }
             else if (collectableController.GetCollectableType() == CollectableController.CollectableType.Stack)
             {
-                GameEvents.AddCollectableToStackEvent?.Invoke(collectableController);
+                GameEvents.AddCollectableToStackEvent?.Invoke(other.transform);
             }
         }
         else if (other.CompareTag("Obstacle"))

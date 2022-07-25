@@ -74,7 +74,7 @@ public class UpgradeItemController : MonoBehaviour
                 PlayerPrefs.SetInt("StartStackCount", PlayerPrefs.GetInt("StartStackCount") + 1);
                 txtStartItemCount.text = PlayerPrefs.GetInt("StartStackCount").ToString();
 
-                GameEvents.UpdateStartStackEvent?.Invoke();
+                GameEvents.UpdateStartStackItemCount?.Invoke();
                 
                 break;
         }

@@ -8,12 +8,13 @@ public struct GameEvents
 {
     public static Action GameStartedEvent;
     public static Action WinGameEvent;
-    public static Action<CollectableController> AddCollectableToStackEvent;
+    public static Action<Transform> AddCollectableToStackEvent;
     public static Action<CollectableController> AddGoldToCurrencyEvent;
     public static Action UpdateCurrentMoneyEvent;
+    public static Action UpdateStartStackItemCount;
     public static Action RemoveCollectableFromStackEvent;
     public static Action<int> SetCollectedMoney;
-    public static Action UpdateStartStackEvent;
+    public static Action UpdateStackItemCount;
     
     public static Action<CollectableController.CollectableType, Vector3> PlayCollectedFeedbackEvent;
     public static Action PlayHittedObstacleFeedbackEvent;
@@ -25,9 +26,10 @@ public struct GameEvents
         AddCollectableToStackEvent = null;
         AddGoldToCurrencyEvent = null;
         UpdateCurrentMoneyEvent = null;
+        UpdateStartStackItemCount = null;
         RemoveCollectableFromStackEvent = null;
         SetCollectedMoney = null;
-        UpdateStartStackEvent = null;
+        UpdateStackItemCount = null;
         
         PlayCollectedFeedbackEvent = null;
         PlayHittedObstacleFeedbackEvent = null;
