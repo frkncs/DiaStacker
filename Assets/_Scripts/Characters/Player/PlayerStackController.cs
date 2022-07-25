@@ -73,6 +73,8 @@ public class PlayerStackController : MonoBehaviour
 
     private void RemoveCollectableFromStack()
     {
+        if (_stackObjectCounter <= 0) return;
+        
         _stackObjectCounter--;
         
         GameEvents.UpdateStackItemCount?.Invoke();
