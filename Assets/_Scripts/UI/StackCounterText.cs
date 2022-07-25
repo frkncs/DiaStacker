@@ -28,10 +28,17 @@ public class StackCounterText : MonoBehaviour
 	    _stackItemCountObjectDefScale = transform.localScale;
 	    
 	    _playerStackController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStackController>();
-	    
-	    GameEvents.UpdateStackItemCount += UpdateStackItemCountText;
-    }
-	
+	}
+
+	private void Start()
+	{
+		GameEvents.GameStartedEvent += () =>
+		{
+			GameEvents.UpdateStackItemCount += UpdateStackItemCountText;
+			UpdateStackItemCountText();
+		};
+	}
+
 	private void UpdateStackItemCountText()
 	{
 		txtStackItemCount.text = _playerStackController.GetStackObjectCount().ToString();

@@ -25,10 +25,13 @@ public class StackSliderController : MonoBehaviour
 		_playerStackController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStackController>();
 
 		_slider.fillAmount = 0;
-		
-		UpdateSliderValue();
-		
-		GameEvents.UpdateStackItemCount += UpdateSliderValue;
+
+		GameEvents.GameStartedEvent += () =>
+		{
+			UpdateSliderValue();
+
+			GameEvents.UpdateStackItemCount += UpdateSliderValue;
+		};
 	}
 
 	private void UpdateSliderValue()

@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xOffset: 1.5
+  hideAtStart: 1
 --- !u!114 &2178158187702279043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xOffset: 0.5
+  hideAtStart: 1
 --- !u!1 &3666986389066382115
 GameObject:
   m_ObjectHideFlags: 0

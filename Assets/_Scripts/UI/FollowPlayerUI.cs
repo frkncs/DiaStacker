@@ -12,8 +12,10 @@ public class FollowPlayerUI : MonoBehaviour
 
 	// Private Variables
 	[SerializeField] private float xOffset;
+	[SerializeField] private bool hideAtStart;
 	
 	private Transform _playerTransform;
+	private Vector3 _defScale;
 
 	#endregion Variables
     
@@ -24,6 +26,18 @@ public class FollowPlayerUI : MonoBehaviour
 
 	private void Start()
 	{
+		if (hideAtStart)
+		{
+			_defScale = transform.localScale;
+
+			transform.localScale = Vector3.zero;
+
+			GameEvents.GameStartedEvent += () =>
+			{
+				transform.localScale = _defScale;
+			};
+		}
+		
 		GameEvents.WinGameEvent += () => gameObject.SetActive(false);
 	}
 
