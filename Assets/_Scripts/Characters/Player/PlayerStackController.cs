@@ -12,8 +12,6 @@ public class PlayerStackController : MonoBehaviour
     // Public Variables
 
     // Private Variables
-    [SerializeField] private GameObject stackItemCountObject;
-    [SerializeField] private TextMeshProUGUI txtStackItemCount;
     [SerializeField] private int maxStackLimit = 20;
 
     private PlayerController _playerController;
@@ -27,7 +25,6 @@ public class PlayerStackController : MonoBehaviour
     {
         _playerController = GetComponent<PlayerController>();
         _stackObjectCounter = PlayerPrefs.GetInt("StartStackCount");
-        _stackItemCountObjectDefScale = stackItemCountObject.transform.localScale;
     }
 
     private void Start()
@@ -35,7 +32,6 @@ public class PlayerStackController : MonoBehaviour
         GameEvents.AddCollectableToStackEvent += AddCollectableToStack;
         GameEvents.RemoveCollectableFromStackEvent += RemoveCollectableFromStack;
         GameEvents.UpdateStartStackItemCount += UpdateStartStack;
-        GameEvents.UpdateStackItemCount += UpdateStackItemCountText;
         
         UpdateStartStack();
     }
@@ -85,12 +81,5 @@ public class PlayerStackController : MonoBehaviour
         _stackObjectCounter = PlayerPrefs.GetInt("StartStackCount");
         
         GameEvents.UpdateStackItemCount?.Invoke();
-    }
-
-    private void UpdateStackItemCountText()
-    {
-        txtStackItemCount.text = _stackObjectCounter.ToString();
-
-        stackItemCountObject.transform.PlayScaleBounceEffect(_stackItemCountObjectDefScale);
     }
 }
