@@ -39,8 +39,16 @@ public class StackSliderController : MonoBehaviour
 		_slider.transform.parent.PlayScaleBounceEffect(_sliderDefScale);
 		
 		_slider.DOKill();
+
+		_slider.DOColor(value >= _slider.fillAmount ? Color.green : Color.red, .15f)
+			.SetEase(Ease.Linear)
+			.OnComplete(() =>
+			{
+				_slider.DOColor(Color.white, .15f)
+					.SetEase(Ease.OutSine);
+			});
 		
 		DOTween.To(() => _slider.fillAmount, x => _slider.fillAmount = x, value, .2f)
 			.SetEase(Ease.OutSine);
-    }
+	}
 }
