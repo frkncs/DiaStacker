@@ -17,6 +17,7 @@ public class PlayerStackController : MonoBehaviour
     [SerializeField] private int maxStackLimit = 20;
 
     private PlayerController _playerController;
+    private Vector3 _stackItemCountObjectDefScale;
 
     private int _stackObjectCounter;
 
@@ -26,6 +27,7 @@ public class PlayerStackController : MonoBehaviour
     {
         _playerController = GetComponent<PlayerController>();
         _stackObjectCounter = PlayerPrefs.GetInt("StartStackCount");
+        _stackItemCountObjectDefScale = stackItemCountObject.transform.localScale;
     }
 
     private void Start()
@@ -87,21 +89,6 @@ public class PlayerStackController : MonoBehaviour
     {
         txtStackItemCount.text = _stackObjectCounter.ToString();
 
-        var txtStackItemTrans = stackItemCountObject.transform;
-
-        txtStackItemTrans.DOKill();
-        txtStackItemTrans.localScale = Vector3.one;
-
-        txtStackItemTrans.DOScale(Vector3.one * 1.5f, .1f)
-            .SetEase(Ease.Linear)
-            .OnComplete(() =>
-            {
-                txtStackItemTrans.DOScale(Vector3.one, .1f)
-                    .SetEase(Ease.Linear);
-            });
-    }
-
-    private void MakeEmptyAllStack()
-    {
+        stackItemCountObject.transform.PlayScaleBounceEffect(_stackItemCountObjectDefScale);
     }
 }

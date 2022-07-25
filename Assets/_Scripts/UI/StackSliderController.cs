@@ -14,11 +14,14 @@ public class StackSliderController : MonoBehaviour
 	private SlicedFilledImage _slider;
 	private PlayerStackController _playerStackController;
 
+	private Vector3 _sliderDefScale;
+	
 	#endregion Variables
     
 	private void Start()
 	{
 		_slider = GetComponent<SlicedFilledImage>();
+		_sliderDefScale = _slider.transform.parent.localScale;
 		_playerStackController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStackController>();
 
 		_slider.fillAmount = 0;
@@ -33,6 +36,8 @@ public class StackSliderController : MonoBehaviour
 		float value = 1 / ((float)_playerStackController.GetMaxStackObjectCount() / 
 		                   _playerStackController.GetStackObjectCount());
 
+		_slider.transform.parent.PlayScaleBounceEffect(_sliderDefScale);
+		
 		_slider.DOKill();
 		
 		DOTween.To(() => _slider.fillAmount, x => _slider.fillAmount = x, value, .2f)
